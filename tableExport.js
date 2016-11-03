@@ -78,10 +78,19 @@ THE SOFTWARE.*/
 				//window.open('data:application/' + defaults.type + ';filename=exportData;' + base64data);
 
 				//download
+				/*console.log("AAA" + base64data);
 				var link = document.createElement("a");
 				link.download = 'marketing-' + Date.now() + "-.csv";
 				link.href = 'data:application/' + defaults.type + ';filename=exportData;' + base64data;
-				link.click();
+				link.click();*/
+
+				var element = document.createElement('a');
+				element.setAttribute('href', 'data:application/' + defaults.type + ';filename=exportData;' + base64data);
+				element.setAttribute('download', 'marketing-' + Date.now() + "-.csv");
+				element.style.display = 'none';
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
 
 			} else if (defaults.type == 'sql') {
 
@@ -285,10 +294,18 @@ THE SOFTWARE.*/
 				var base64data = "base64," + $.base64.encode(excelFile);
 
 				//download
-				var link = document.createElement("a");
+				/*var link = document.createElement("a");
 				link.download = 'marketing-' + Date.now() + "-.xls";
 				link.href = 'data:application/vnd.ms-' + defaults.type + ';filename=exportData.doc;' + base64data;
-				link.click();
+				link.click();*/
+
+				var element = document.createElement('a');
+				element.setAttribute('href', 'data:application/vnd.ms-' + defaults.type + ';filename=exportData.doc;' + base64data);
+				element.setAttribute('download', 'marketing-' + Date.now() + "-.xls");
+				element.style.display = 'none';
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
 
 			} else if (defaults.type == 'png') {
 				html2canvas($(el), {
